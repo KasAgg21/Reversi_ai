@@ -2,7 +2,7 @@ import sys
 from game.settings import *
 from game import color as clr
 
-__author__ = 'bengt'
+__author__ = 'kashish'
 
 
 class Piece(object):
@@ -133,3 +133,18 @@ class Piece(object):
 
     def __repr__(self):
         return '({0},{1})'.format(self.x, self.y)
+    
+
+#     This is a Python class called Piece, which represents a game piece on an 8x8 grid. The class has methods for initializing a piece's position and color, drawing the piece on the board in its current state, changing the piece's state (i.e. from WHITE to BLACK), flipping the piece between black and white, and checking the piece's position and flipped state.
+
+# The draw() method returns a string representation of the piece in its current state, which is determined by the state attribute. The drawing dictionary holds references to drawing functions based on the piece's color and state.
+
+# The set_ methods change the state attribute of the piece to the corresponding state (WHITE, BLACK, MOVE, BOARD).
+
+# The flip() method flips a piece from BLACK to WHITE and vice versa, and marks it as flipped. A ValueError is raised if an attempt is made to flip a MOVE or BOARD piece.
+
+# The is_flipped() method returns True if the piece is flipped, otherwise False.
+
+# The get_position() method returns the piece's current position as a tuple of (x, y).
+
+# The __repr__() method returns a string representation of the piece's current position as "(x,y)".

@@ -99,3 +99,17 @@ def print_color(*args, **kwargs):
  
 def format_color(string, fg=None, bg=None):
     return _set_color(fg, bg) + string + _reset_color()
+
+
+# This is a Python module that provides utilities for 256 color support in terminals.
+
+# The module defines a few constants for the standard 16 system colors, and provides two functions for calculating the palette index of a color in the 6x6x6 color cube or in the grayscale ramp.
+
+# The set_color function outputs escape codes to set the foreground and/or background color of the terminal. The foreground and background colors are specified as indices into the color palette. The reset_color function resets the terminal color to the default.
+
+# The print_color function is a wrapper around the built-in print function that sets the color of the output before printing and resets the color after printing.
+
+# The format_color function returns a string that has the specified foreground and/or background color.
+
+
+

@@ -5,7 +5,7 @@ from game.controllers import PlayerController, AiController
 from game.random_controller import RandomController
 from game.settings import *
 
-__author__ = 'bengt'
+__author__ = 'kashish'
 
 
 class Game(object):
@@ -118,3 +118,15 @@ class Game(object):
         """
         x, y = coordinate
         return '{0}{1}'.format(chr(ord('a') + x), y + 1)
+
+
+# This is the implementation of a simple command-line game called "Reversi" or "Othello". The code consists of a Game class that ties together a Board class, PlayerController class, AiController class, and RandomController class.
+
+# When the Game object is created, it initializes the board, sets the timeout for the AI to make its move, and creates two controllers for the players. It then sets up the board with the starting positions and marks the possible moves for the first player.
+
+# The game loop is run through the run() method, which displays the game information, the current state of the board, and the possible moves for the current player. It then waits for the current player to make a move, processes the move, and switches to the next player. If a player has no moves, the game switches to the next player. If both players have no moves, the game ends and the winner is determined based on the number of pieces on the board.
+
+# The to_board_coordinates() method is used to transform an (x, y) tuple into (a-h, 1-8) tuple for display purposes.
+
+
+

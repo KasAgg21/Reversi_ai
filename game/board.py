@@ -1,7 +1,7 @@
 from game.piece import Piece
 from game.settings import *
 
-__author__ = 'bengt'
+__author__ = 'kashish'
 
 
 class Board(object):
@@ -143,3 +143,15 @@ class Board(object):
 
     def __repr__(self):
         return self.draw()
+
+
+# This is a Python code for a Reversi (also known as Othello) game. Reversi is a board game played by two players who take turns placing their colored pieces (either black or white) on a board, attempting to capture the opponent's pieces by trapping them between their own pieces. The game ends when no more moves can be made, and the player with the most pieces on the board at the end of the game wins.
+
+# The code defines a Board class that represents the current state of the Reversi board. The constructor takes a color (either BLACK or WHITE) as an argument and initializes the board with a size of 8x8 and with pieces of the given color in the center of the board. The Board class provides various methods for manipulating the state of the board, including setting the state of a piece to WHITE or BLACK, marking valid moves for a player, making a move on the board, and clearing the board of all move markers.
+
+# The code also defines a Piece class that represents a single piece on the Reversi board. Each piece has a position (given by its x and y coordinates), a color (either BLACK or WHITE), and a state (either BOARD, MOVE, WHITE, or BLACK). The Piece class provides various methods for changing the state of a piece, including setting it to a given color, marking it as a valid move, flipping it to the opposite color, and resetting it to the board state.
+
+# Overall, this code provides a basic framework for implementing a Reversi game in Python, with the Board and Piece classes handling the state of the game board and the logic for making moves and capturing pieces.
+
+
+

@@ -1,4 +1,4 @@
-__author__ = 'bengt'
+__author__ = 'kashish'
 
 BOARD, WHITE, BLACK, MOVE = 'BOARD', 'WHITE', 'BLACK', 'MOVE'
 WIDTH, HEIGHT = 8, 8
@@ -43,3 +43,23 @@ def outside_board(tile, direction):
             (direction in (SOUTH, SOUTHWEST, SOUTHEAST) and tile_bot)   or \
             (direction in (NORTHEAST, EAST, SOUTHEAST)  and tile_right) or \
             (direction in (NORTHWEST, WEST, SOUTHWEST)  and tile_left)
+
+
+# This is a module containing various utility functions and constants used in a game.
+
+# The constants defined are:
+
+# BOARD: a string representing the game board
+# WHITE: a string representing the white player
+# BLACK: a string representing the black player
+# MOVE: a string representing a move
+# WIDTH: an integer representing the width of the game board
+# HEIGHT: an integer representing the height of the game board
+# NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, and NORTHWEST: integers representing the possible directions of movement on the game board.
+# The functions defined are:
+
+# chunks(l, n): a generator function that yields successive n-sized chunks from list l
+# get_opponent(player): returns the opponent of the player passed as an argument
+# outside_board(tile, direction): checks whether a move in a given direction from a given tile would take the player outside the game board. It returns a boolean value.
+
+

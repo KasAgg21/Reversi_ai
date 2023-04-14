@@ -7,7 +7,7 @@ from game.ai import AlphaBetaPruner
 from game.brain import Brain
 from game.settings import *
 
-__author__ = 'bengt'
+__author__ = 'kashish'
 
 
 class Controller(object):
@@ -146,3 +146,12 @@ class AiController(Controller):
 
     def __repr__(self):
         return "AiController[" + self.id + "]"
+    
+
+#     This is a Python module that defines two classes for controllers of a board game. The first class is Controller, which is an interface for different types of controllers. The second class is PlayerController, which is a controller for a real human player, and AiController, which is an AI controller for the game.
+
+# PlayerController implements the next_move() method, which processes input from the player and returns a valid move. The player enters a coordinate as an (x, y) tuple, and the controller validates the input and returns the chosen move. The get_colour() method returns the color of the controller.
+
+# AiController also implements the next_move() and get_colour() methods. The next_move() method creates a new Brain object and starts a Minimax calculation with the Alpha-Beta Pruning optimization to find optimal moves based on an evaluation function, in another thread. Meanwhile, the AiController outputs to stdout to show that it hasn't crashed. The method then waits for the calculation to finish and returns the chosen move. The get_colour() method returns the color of the controller.
+
+# The module also imports other classes and functions from other modules, such as AlphaBetaPruner, Brain, and settings.

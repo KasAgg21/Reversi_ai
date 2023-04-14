@@ -2,7 +2,7 @@ import copy
 import datetime
 import sys
 
-__author__ = 'bengt'
+__author__ = 'kashish'
 
 from game.settings import *
 
@@ -195,3 +195,26 @@ class AlphaBetaPruner(object):
         """ Returns True when the cutoff limit has been reached.
         """
         return depth > 1000 or datetime.datetime.now() > self.lifetime
+
+# This is a Python class called AlphaBetaPruner that implements the Alpha-Beta Pruning algorithm for a two-player game. The game is not specified in the code, but some of the variables suggest it may be a game of Othello/Reversi.
+
+# The __init__ method initializes the object with the mutex object (not shown here), duration, pieces, first_player, and second_player. It also sets some constants such as self.infinity, which is a very large number used for comparison.
+
+# The make_state method takes a list of pieces and returns a tuple in the form of "current_state", that is: (current_player, state).
+
+# The alpha_beta_search method returns a valid action for the AI. It sets the depth to 0 and initializes a lifetime variable. It then uses a lambda function fn to calculate the minimum value for each possible action, and a lambda function maxfn to return the maximum value. The method returns the action with the maximum value.
+
+# The max_value and min_value methods recursively call each other to calculate the best possible move for the AI and the player, respectively. They take a depth, current_state, alpha, and beta as parameters. They use a cutoff_test method to determine if the search should be stopped. They also use an evaluation method to calculate the value of a given state.
+
+# The evaluation method takes the current_state and the player_to_check as parameters. It calculates a positive value when the player wins, zero when there is a draw, and a negative value when the opponent wins. It calculates the value based on the player's number of pieces, the number of corners and edges occupied by each player, and the number of possible moves each player has.
+
+# The actions method returns a list of tuples as coordinates for the valid moves for the current player.
+
+# The opponent method returns the opponent of the specified player.
+
+# The next_state method takes a current_state and an action as parameters. It returns the next state in the form of a "current_state" tuple, (current_player, state).
+
+# There are several variables defined in the class, including board, move, white, black, infinity, first_player, and second_player. Some of these variables suggest the game may be a game of Othello/Reversi. The code for these variables is not shown here, but they are likely defined in an imported module settings.
+
+
+
