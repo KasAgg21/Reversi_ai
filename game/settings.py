@@ -1,187 +1,45 @@
-from unittest import TestCase
-from game.board import Board
-from game.settings import *
-
 __author__ = 'bengt'
 
-class TestSettings(TestCase):
+BOARD, WHITE, BLACK, MOVE = 'BOARD', 'WHITE', 'BLACK', 'MOVE'
+WIDTH, HEIGHT = 8, 8
+NORTH = -HEIGHT
+NORTHEAST = -HEIGHT + 1
+EAST = 1
+SOUTHEAST = HEIGHT + 1
+SOUTH = HEIGHT
+SOUTHWEST = HEIGHT - 1
+WEST = - 1
+NORTHWEST = -HEIGHT - 1
 
-    def test_outside_top_left(self):
-        self.assertEqual(outside_board(0, NORTH), True)
-        self.assertEqual(outside_board(0, NORTHEAST), True)
-        self.assertEqual(outside_board(0, NORTHWEST), True)
-        self.assertEqual(outside_board(0, WEST), True)
-        self.assertEqual(outside_board(0, SOUTHWEST), True)
-        self.assertEqual(outside_board(0, EAST), False)
-        self.assertEqual(outside_board(0, SOUTHEAST), False)
-        self.assertEqual(outside_board(0, SOUTH), False)
+DIRECTIONS = (NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST)
 
-    def test_outside_top(self):
-        self.assertEqual(outside_board(1, NORTH), True)
-        self.assertEqual(outside_board(1, NORTHEAST), True)
-        self.assertEqual(outside_board(1, NORTHWEST), True)
-        self.assertEqual(outside_board(1, WEST), False)
-        self.assertEqual(outside_board(1, SOUTHWEST), False)
-        self.assertEqual(outside_board(1, EAST), False)
-        self.assertEqual(outside_board(1, SOUTHEAST), False)
-        self.assertEqual(outside_board(1, SOUTH), False)
 
-        self.assertEqual(outside_board(4, NORTH), True)
-        self.assertEqual(outside_board(4, NORTHEAST), True)
-        self.assertEqual(outside_board(4, NORTHWEST), True)
-        self.assertEqual(outside_board(4, WEST), False)
-        self.assertEqual(outside_board(4, SOUTHWEST), False)
-        self.assertEqual(outside_board(4, EAST), False)
-        self.assertEqual(outside_board(4, SOUTHEAST), False)
-        self.assertEqual(outside_board(4, SOUTH), False)
+def chunks(l, n):
+    """ Yield successive n-sized chunks from l.
+    """
+    for i in range(0, len(l), n):
+        yield l[i:i + n]
 
-        self.assertEqual(outside_board(6, NORTH), True)
-        self.assertEqual(outside_board(6, NORTHEAST), True)
-        self.assertEqual(outside_board(6, NORTHWEST), True)
-        self.assertEqual(outside_board(6, WEST), False)
-        self.assertEqual(outside_board(6, SOUTHWEST), False)
-        self.assertEqual(outside_board(6, EAST), False)
-        self.assertEqual(outside_board(6, SOUTHEAST), False)
-        self.assertEqual(outside_board(6, SOUTH), False)
 
-    def test_outside_top_right(self):
-        self.assertEqual(outside_board(7, NORTH), True)
-        self.assertEqual(outside_board(7, NORTHEAST), True)
-        self.assertEqual(outside_board(7, NORTHWEST), True)
-        self.assertEqual(outside_board(7, WEST), False)
-        self.assertEqual(outside_board(7, SOUTHWEST), False)
-        self.assertEqual(outside_board(7, EAST), True)
-        self.assertEqual(outside_board(7, SOUTHEAST), True)
-        self.assertEqual(outside_board(7, SOUTH), False)
+def get_opponent(player):
+    if player == WHITE:
+        return BLACK
+    elif player == BLACK:
+        return WHITE
+    else:
+        raise ValueError
 
-    def test_outside_right(self):
-        self.assertEqual(outside_board(15, NORTH), False)
-        self.assertEqual(outside_board(15, NORTHEAST), True)
-        self.assertEqual(outside_board(15, NORTHWEST), False)
-        self.assertEqual(outside_board(15, WEST), False)
-        self.assertEqual(outside_board(15, SOUTHWEST), False)
-        self.assertEqual(outside_board(15, EAST), True)
-        self.assertEqual(outside_board(15, SOUTHEAST), True)
-        self.assertEqual(outside_board(15, SOUTH), False)
 
-        self.assertEqual(outside_board(23, NORTH), False)
-        self.assertEqual(outside_board(23, NORTHEAST), True)
-        self.assertEqual(outside_board(23, NORTHWEST), False)
-        self.assertEqual(outside_board(23, WEST), False)
-        self.assertEqual(outside_board(23, SOUTHWEST), False)
-        self.assertEqual(outside_board(23, EAST), True)
-        self.assertEqual(outside_board(23, SOUTHEAST), True)
-        self.assertEqual(outside_board(23, SOUTH), False)
+class NoMovesError(Exception):
+    pass
 
-        self.assertEqual(outside_board(39, NORTH), False)
-        self.assertEqual(outside_board(39, NORTHEAST), True)
-        self.assertEqual(outside_board(39, NORTHWEST), False)
-        self.assertEqual(outside_board(39, WEST), False)
-        self.assertEqual(outside_board(39, SOUTHWEST), False)
-        self.assertEqual(outside_board(39, EAST), True)
-        self.assertEqual(outside_board(39, SOUTHEAST), True)
-        self.assertEqual(outside_board(39, SOUTH), False)
 
-    def test_outside_bottom_right(self):
-        self.assertEqual(outside_board(63, NORTH), False)
-        self.assertEqual(outside_board(63, NORTHEAST), True)
-        self.assertEqual(outside_board(63, NORTHWEST), False)
-        self.assertEqual(outside_board(63, WEST), False)
-        self.assertEqual(outside_board(63, SOUTHWEST), True)
-        self.assertEqual(outside_board(63, EAST), True)
-        self.assertEqual(outside_board(63, SOUTHEAST), True)
-        self.assertEqual(outside_board(63, SOUTH), True)
-
-    def test_outside_bottom(self):
-        self.assertEqual(outside_board(57, NORTH), False)
-        self.assertEqual(outside_board(57, NORTHEAST), False)
-        self.assertEqual(outside_board(57, NORTHWEST), False)
-        self.assertEqual(outside_board(57, WEST), False)
-        self.assertEqual(outside_board(57, SOUTHWEST), True)
-        self.assertEqual(outside_board(57, EAST), False)
-        self.assertEqual(outside_board(57, SOUTHEAST), True)
-        self.assertEqual(outside_board(57, SOUTH), True)
-
-        self.assertEqual(outside_board(58, NORTH), False)
-        self.assertEqual(outside_board(58, NORTHEAST), False)
-        self.assertEqual(outside_board(58, NORTHWEST), False)
-        self.assertEqual(outside_board(58, WEST), False)
-        self.assertEqual(outside_board(58, SOUTHWEST), True)
-        self.assertEqual(outside_board(58, EAST), False)
-        self.assertEqual(outside_board(58, SOUTHEAST), True)
-        self.assertEqual(outside_board(58, SOUTH), True)
-
-        self.assertEqual(outside_board(62, NORTH), False)
-        self.assertEqual(outside_board(62, NORTHEAST), False)
-        self.assertEqual(outside_board(62, NORTHWEST), False)
-        self.assertEqual(outside_board(62, WEST), False)
-        self.assertEqual(outside_board(62, SOUTHWEST), True)
-        self.assertEqual(outside_board(62, EAST), False)
-        self.assertEqual(outside_board(62, SOUTHEAST), True)
-        self.assertEqual(outside_board(62, SOUTH), True)
-
-    def test_outside_bottom_left(self):
-        self.assertEqual(outside_board(56, NORTH), False)
-        self.assertEqual(outside_board(56, NORTHEAST), False)
-        self.assertEqual(outside_board(56, NORTHWEST), True)
-        self.assertEqual(outside_board(56, WEST), True)
-        self.assertEqual(outside_board(56, SOUTHWEST), True)
-        self.assertEqual(outside_board(56, EAST), False)
-        self.assertEqual(outside_board(56, SOUTHEAST), True)
-        self.assertEqual(outside_board(56, SOUTH), True)
-
-    def test_outside_left(self):
-        self.assertEqual(outside_board(48, NORTH), False)
-        self.assertEqual(outside_board(48, NORTHEAST), False)
-        self.assertEqual(outside_board(48, NORTHWEST), True)
-        self.assertEqual(outside_board(48, WEST), True)
-        self.assertEqual(outside_board(48, SOUTHWEST), True)
-        self.assertEqual(outside_board(48, EAST), False)
-        self.assertEqual(outside_board(48, SOUTHEAST), False)
-        self.assertEqual(outside_board(48, SOUTH), False)
-
-        self.assertEqual(outside_board(40, NORTH), False)
-        self.assertEqual(outside_board(40, NORTHEAST), False)
-        self.assertEqual(outside_board(40, NORTHWEST), True)
-        self.assertEqual(outside_board(40, WEST), True)
-        self.assertEqual(outside_board(40, SOUTHWEST), True)
-        self.assertEqual(outside_board(40, EAST), False)
-        self.assertEqual(outside_board(40, SOUTHEAST), False)
-        self.assertEqual(outside_board(40, SOUTH), False)
-
-        self.assertEqual(outside_board(24, NORTH), False)
-        self.assertEqual(outside_board(24, NORTHEAST), False)
-        self.assertEqual(outside_board(24, NORTHWEST), True)
-        self.assertEqual(outside_board(24, WEST), True)
-        self.assertEqual(outside_board(24, SOUTHWEST), True)
-        self.assertEqual(outside_board(24, EAST), False)
-        self.assertEqual(outside_board(24, SOUTHEAST), False)
-        self.assertEqual(outside_board(24, SOUTH), False)
-
-    def test_outside_middle(self):
-        self.assertEqual(outside_board(26, NORTH), False)
-        self.assertEqual(outside_board(26, NORTHEAST), False)
-        self.assertEqual(outside_board(26, NORTHWEST), False)
-        self.assertEqual(outside_board(26, WEST), False)
-        self.assertEqual(outside_board(26, SOUTHWEST), False)
-        self.assertEqual(outside_board(26, EAST), False)
-        self.assertEqual(outside_board(26, SOUTHEAST), False)
-        self.assertEqual(outside_board(26, SOUTH), False)
-
-        self.assertEqual(outside_board(35, NORTH), False)
-        self.assertEqual(outside_board(35, NORTHEAST), False)
-        self.assertEqual(outside_board(35, NORTHWEST), False)
-        self.assertEqual(outside_board(35, WEST), False)
-        self.assertEqual(outside_board(35, SOUTHWEST), False)
-        self.assertEqual(outside_board(35, EAST), False)
-        self.assertEqual(outside_board(35, SOUTHEAST), False)
-        self.assertEqual(outside_board(35, SOUTH), False)
-
-        self.assertEqual(outside_board(10, NORTH), False)
-        self.assertEqual(outside_board(10, NORTHEAST), False)
-        self.assertEqual(outside_board(10, NORTHWEST), False)
-        self.assertEqual(outside_board(10, WEST), False)
-        self.assertEqual(outside_board(10, SOUTHWEST), False)
-        self.assertEqual(outside_board(10, EAST), False)
-        self.assertEqual(outside_board(10, SOUTHEAST), False)
-        self.assertEqual(outside_board(10, SOUTH), False)
+def outside_board(tile, direction):
+    tile_top = 0 <= tile <= 7
+    tile_bot = 56 <= tile <= 63
+    tile_right = tile % WIDTH == 7
+    tile_left = tile % WIDTH == 0
+    return  (direction in (NORTH, NORTHEAST, NORTHWEST) and tile_top)   or \
+            (direction in (SOUTH, SOUTHWEST, SOUTHEAST) and tile_bot)   or \
+            (direction in (NORTHEAST, EAST, SOUTHEAST)  and tile_right) or \
+            (direction in (NORTHWEST, WEST, SOUTHWEST)  and tile_left)
