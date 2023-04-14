@@ -1,7 +1,7 @@
 from game.settings import *
 from game.piece import Piece
 
-__author__ = 'bengt'
+__author__ = 'kashish'
 
 import unittest
 

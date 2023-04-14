@@ -1,7 +1,7 @@
 from game.game import Game
 from game.settings import BLACK, WHITE
 
-__author__ = 'yuessiah'
+__author__ = 'kashish'
 
 import unittest
 
